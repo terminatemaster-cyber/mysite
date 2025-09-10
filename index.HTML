@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>User Data Collector - Friendly GUI with N/A option</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    rel="stylesheet"
+  />
+  <style>
+    /* Smooth scroll for anchor links */
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen flex flex-col">
+
+  <!-- Header -->
+  <header class="bg-white shadow-lg rounded-b-lg mx-4 mt-4 p-6 text-center">
+    <h1 class="text-3xl font-bold text-indigo-700">User  Data Collector</h1>
+    <p class="text-gray-600 mt-2">Collect and export user information to Excel effortlessly <h5>Built By Murtaza Lohawala</h5></p>
+  </header>
+
+  <main class="container mx-auto px-6 py-8 flex-grow">
+  <!-- Add this inside your <main> or near the form, for example above the form -->
+
+<section class="bg-white rounded-lg shadow-md p-6 mb-8 max-w-5xl mx-auto">
+  <h2 class="text-2xl font-semibold text-gray-800 mb-4 flex items-center">
+    <i class="fas fa-file-import mr-2 text-indigo-500" title="Load Previous Excel"></i>
+    Load Previous Excel File
+  </h2>
+  <input type="file" id="uploadExcel" accept=".xlsx, .xls" class="border border-gray-300 rounded-md p-2 w-full max-w-sm" />
+  <p id="uploadFeedback" class="text-red-600 mt-2 hidden"></p>
+</section>
+    <!-- Form Section -->
+    <section class="bg-white rounded-lg shadow-md p-6 mb-8 max-w-5xl mx-auto">
+      <h2 class="text-2xl font-semibold text-gray-800 mb-4 flex items-center">
+        <i class="fas fa-user-plus mr-2 text-indigo-500" title="Add New Entry"></i>
+        Add New Entry
+      </h2>
+      <form id="dataForm" class="space-y-4" novalidate>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+		 <div>
+            <label class="block text-gray-700 mb-1" for="name" title="Full Name">
+              <i class="fas fa-user mr-1"></i>s.no <span class="text-red-600">*</span>
+            </label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Murtaza lw"
+              class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              required
+              aria-required="true"
+            />
+          </div>
+          <div>
+            <label class="block text-gray-700 mb-1" for="name" title="Full Name">
+              <i class="fas fa-user mr-1"></i>Name <span class="text-red-600">*</span>
+            </label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Murtaza lw"
+              class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              required
+              aria-required="true"
+            />
+          </div>
+          <div>
+            <label class="block text-gray-700 mb-1" for="location" title="Location">
+              <i class="fas fa-map-marker-alt mr-1"></i>Location <span class="text-red-600">*</span>
+            </label>
+            <input
+              type="text"
+              id="location"
+              name="location"
+              placeholder="kuwait"
+              class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              required
+              aria-required="true"
+            />
+          </div>
+          <div>
+            <label class="block text-gray-700 mb-1" for="email" title="Email Address">
+              <i class="fas fa-envelope mr-1"></i>Email <span class="text-red-600">*</span>
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Murtaza@example.com"
+              class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              required
+              aria-required="true"
+            />
+          </div>
+          <div>
+            <label class="block text-gray-700 mb-1" for="phone" title="Phone Number">
+              <i class="fas fa-phone mr-1"></i>Phone <span class="text-red-600">*</span>
+            </label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              placeholder="+1 234 567 8900"
+              class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              required
+              aria-required="true"
+              pattern="^\+?[0-9\s\-]{7,15}$"
+              title="Enter a valid phone number"
+            />
+          </div>
+          <div>
+            <label class="block text-gray-700 mb-1" for="instagram" title="Instagram Handle">
+              <i class="fab fa-instagram mr-1"></i>Instagram Handle
+            </label>
+            <input
+              type="text"
+              id="instagram"
+              name="instagram"
+              placeholder="@yourhandle"
+              class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            />
+          </div>
+          <div>
+            <label class="block text-gray-700 mb-1" for="website" title="Website URL">
+              <i class="fas fa-globe mr-1"></i>Website URL
+            </label>
+            <input
+              type="url"
+              id="website"
+              name="website"
+              placeholder="https://example.com"
+              class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            />
+          </div>
+        </div>
+        <p class="text-sm text-gray-600 mt-1"><span class="text-red-600">*</span> Required fields</p>
+        <button
+          type="submit"
+          class="bg-indigo-600 text-white px-6 py-2 rounded-md hover:bg-indigo-700 transition duration-300 flex items-center justify-center mx-auto"
+          aria-label="Add Entry"
+        >
+          <i class="fas fa-plus mr-2"></i> Add Entry
+        </button>
+      </form>
+      <p id="formFeedback" class="mt-3 text-center text-red-600 font-semibold hidden" role="alert"></p>
+    </section>
+
+    <!-- Entries Table -->
+    <section class="bg-white rounded-lg shadow-md p-6 max-w-5xl mx-auto" id="entriesSection">
+      <h2 class="text-2xl font-semibold text-gray-800 mb-4 flex items-center">
+        <i class="fas fa-list mr-2 text-green-500" title="Collected Entries"></i>
+        Collected Entries
+      </h2>
+      <div class="overflow-x-auto">
+        <table
+          class="w-full table-auto border-collapse border border-gray-300"
+          id="dataTable"
+          aria-describedby="noData"
+        >
+          <thead>
+            <tr class="bg-gray-100">
+			<th class="px-4 py-2 text-left border border-gray-300">s.no</th>
+              <th class="px-4 py-2 text-left border border-gray-300">Name</th>
+              <th class="px-4 py-2 text-left border border-gray-300">Location</th>
+              <th class="px-4 py-2 text-left border border-gray-300">Email</th>
+              <th class="px-4 py-2 text-left border border-gray-300">Phone</th>
+              <th class="px-4 py-2 text-left border border-gray-300">Instagram</th>
+              <th class="px-4 py-2 text-left border border-gray-300">Website</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+        <p id="noData" class="text-center text-gray-500 mt-4">No entries yet. Add your first entry above!</p>
+      </div>
+    </section>
+
+    <!-- Export and Copy Buttons -->
+    <div class="mt-8 text-center max-w-5xl mx-auto flex justify-center gap-6 flex-wrap">
+      <button
+        id="exportBtn"
+        class="bg-green-600 text-white px-8 py-3 rounded-lg hover:bg-green-700 transition duration-300 flex items-center justify-center shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+        aria-label="Export to Excel"
+        disabled
+      >
+        <i class="fas fa-download mr-2"></i> Export to Excel
+      </button>
+
+      <button
+        id="copyBtn"
+        class="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition duration-300 flex items-center justify-center shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+        aria-label="Copy Table Data"
+        disabled
+      >
+        <i class="fas fa-copy mr-2"></i> Copy Table
+      </button>
+    </div>
+  </main>
+<section class="bg-white rounded-lg shadow-md p-6 max-w-5xl mx-auto mt-10">
+  <h2 class="text-2xl font-semibold text-gray-800 mb-4 flex items-center">
+    <i class="fas fa-upload mr-2 text-indigo-500" title="Upload File"></i>
+    Upload File
+  </h2>
+  <input
+    type="file"
+    id="fileUploadInput"
+    class="border border-gray-300 rounded-md p-2 w-full max-w-sm mb-4"
+  />
+  <button
+    id="fileUploadBtn"
+    class="bg-indigo-600 text-white px-6 py-2 rounded-md hover:bg-indigo-700 transition duration-300 flex items-center justify-center"
+    disabled
+  >
+    <i class="fas fa-cloud-upload-alt mr-2"></i> Upload
+  </button>
+  <div id="uploadStatus" class="mt-3 text-gray-700 font-medium"></div>
+  <div id="uploadProgressBar" class="w-full bg-gray-200 rounded-full h-4 mt-2 max-w-sm hidden">
+    <div id="uploadProgressFill" class="bg-indigo-600 h-4 rounded-full w-0"></div>
+  </div>
+</section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white py-4 mt-12 text-center">
+    <p>
+      &copy; 2025 User Data Collector. Built BY
+      <i class="fas fa-heart text-red-400" aria-hidden="true"></i> Murtaza lohawala.
+    </p>
+  </footer>
+<script>
+let sheetjsLoaded = false;
+
+function loadSheetJS() {
+  return new Promise((resolve, reject) => {
+    if (sheetjsLoaded) {
+      resolve();
+      return;
+    }
+    const script = document.createElement('script');
+    script.src = 'https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js';
+    script.onload = () => {
+      sheetjsLoaded = true;
+      resolve();
+    };
+    script.onerror = () => reject(new Error('Failed to load SheetJS'));
+    document.head.appendChild(script);
+  });
+}
+
+// Example export button handler
+exportBtn.addEventListener("click", async function () {
+  if (data.length === 0) {
+    alert("No data to export! Add some entries first.");
+    return;
+  }
+  try {
+    await loadSheetJS();
+    const ws = XLSX.utils.json_to_sheet(data);
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, "User  Data");
+    XLSX.writeFile(wb, "user_data.xlsx");
+  } catch (err) {
+    alert("Error loading export functionality.");
+    console.error(err);
+  }
+});
+
+// Example import handler (adjust your existing uploadExcel change event)
+uploadExcel.addEventListener('change', async function(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+
+  try {
+    await loadSheetJS();
+  } catch (err) {
+    alert("Failed to load Excel import functionality.");
+    console.error(err);
+    return;
+  }
+
+  const reader = new FileReader();
+  reader.onload = function(evt) {
+    const dataBinary = evt.target.result;
+    try {
+      const workbook = XLSX.read(dataBinary, { type: 'binary' });
+      const firstSheetName = workbook.SheetNames[0];
+      const worksheet = workbook.Sheets[firstSheetName];
+      const existingData = XLSX.utils.sheet_to_json(worksheet, { defval: "N/A" });
+
+      existingData.forEach(entry => {
+        data.push(entry);
+        addRow(entry);
+      });
+
+      if (existingData.length > 0) {
+        noDataMsg.classList.add('hidden');
+        exportBtn.disabled = false;
+        copyBtn.disabled = false;
+        uploadFeedback.textContent = `Loaded ${existingData.length} entries from the uploaded file.`;
+        uploadFeedback.classList.remove('hidden');
+      } else {
+        uploadFeedback.textContent = 'Uploaded file contains no data.';
+        uploadFeedback.classList.remove('hidden');
+      }
+    } catch (error) {
+      uploadFeedback.textContent = 'Error reading Excel file. Please upload a valid .xlsx or .xls file.';
+      uploadFeedback.classList.remove('hidden');
+      console.error(error);
+    }
+  };
+  reader.readAsBinaryString(file);
+});
+</script>
+  <script>
+const uploadExcel = document.getElementById('uploadExcel');
+const uploadFeedback = document.getElementById('uploadFeedback');
+
+uploadExcel.addEventListener('change', function(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = function(evt) {
+    const dataBinary = evt.target.result;
+    try {
+      const workbook = XLSX.read(dataBinary, { type: 'binary' });
+      const firstSheetName = workbook.SheetNames[0];
+      const worksheet = workbook.Sheets[firstSheetName];
+      const existingData = XLSX.utils.sheet_to_json(worksheet, { defval: "N/A" });
+
+      // Append existing data to your current data array and table
+      existingData.forEach(entry => {
+        // Optional: add duplicate check here if needed
+        data.push(entry);
+        addRow(entry);
+      });
+
+      if (existingData.length > 0) {
+        noDataMsg.classList.add('hidden');
+        exportBtn.disabled = false;
+        copyBtn.disabled = false;
+        uploadFeedback.textContent = `Loaded ${existingData.length} entries from the uploaded file.`;
+        uploadFeedback.classList.remove('hidden');
+      } else {
+        uploadFeedback.textContent = 'Uploaded file contains no data.';
+        uploadFeedback.classList.remove('hidden');
+      }
+    } catch (error) {
+      uploadFeedback.textContent = 'Error reading Excel file. Please upload a valid .xlsx or .xls file.';
+      uploadFeedback.classList.remove('hidden');
+      console.error(error);
+    }
+  };
+  reader.readAsBinaryString(file);
+});</script>
+  <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
+  <script>
+    const data = [];
+    const form = document.getElementById("dataForm");
+    const tableBody = document.querySelector("#dataTable tbody");
+    const exportBtn = document.getElementById("exportBtn");
+    const copyBtn = document.getElementById("copyBtn");
+    const noDataMsg = document.getElementById("noData");
+    const formFeedback = document.getElementById("formFeedback");
+    const entriesSection = document.getElementById("entriesSection");
+
+    // Helper: Validate phone pattern
+    function isValidPhone(phone) {
+      const phonePattern = /^\+?[0-9\s\-]{7,15}$/;
+      return phonePattern.test(phone);
+    }
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      formFeedback.classList.add("hidden");
+      const formData = new FormData(form);
+
+      // Get values or "N/A" if empty (except required fields)
+      function getValue(fieldName, required = false) {
+        const val = formData.get(fieldName).trim();
+        if (val === "") {
+          return required ? "" : "N/A";
+        }
+        return val;
+      }
+
+      const entry = {
+        Name: getValue("name", true),
+        Location: getValue("location", true),
+        Email: getValue("email", true),
+        Phone: getValue("phone", true),
+        Instagram: getValue("instagram"),
+        Website: getValue("website"),
+      };
+
+      // Basic validation for required fields
+      if (!entry.Name || !entry.Location || !entry.Email || !entry.Phone) {
+        formFeedback.textContent = "Please fill in all required fields.";
+        formFeedback.classList.remove("hidden");
+        return;
+      }
+      // Validate phone format
+      if (!isValidPhone(entry.Phone)) {
+        formFeedback.textContent = "Please enter a valid phone number.";
+        formFeedback.classList.remove("hidden");
+        return;
+      }
+      // Validate email format (simple)
+      if (!entry.Email.includes("@")) {
+        formFeedback.textContent = "Please enter a valid email address.";
+        formFeedback.classList.remove("hidden");
+        return;
+      }
+      // Validate website URL if provided and not "N/A"
+      if (entry.Website !== "N/A" && !isValidURL(entry.Website)) {
+        formFeedback.textContent = "Please enter a valid website URL.";
+        formFeedback.classList.remove("hidden");
+        return;
+      }
+
+      data.push(entry);
+      addRow(entry);
+      form.reset();
+      noDataMsg.classList.add("hidden");
+      exportBtn.disabled = false;
+      copyBtn.disabled = false;
+
+      // Scroll to entries table smoothly
+      entriesSection.scrollIntoView({ behavior: "smooth" });
+    });
+
+    function addRow(entry) {
+      const row = document.createElement("tr");
+      row.className = "hover:bg-gray-50 transition duration-200";
+      for (const key in entry) {
+        const cell = document.createElement("td");
+        cell.className = "px-4 py-2 border border-gray-300 break-words max-w-xs";
+        if (key === "Instagram" && entry[key] && entry[key] !== "N/A") {
+          const handle = entry[key].replace(/^@/, "");
+          cell.innerHTML = `<a href="https://instagram.com/${handle}" target="_blank" rel="noopener noreferrer" class="text-blue-500 hover:text-blue-700" title="Open Instagram profile">@${handle}</a>`;
+        } else if (key === "Website" && entry[key] && entry[key] !== "N/A") {
+          cell.innerHTML = `<a href="${entry[key]}" target="_blank" rel="noopener noreferrer" class="text-blue-500 hover:text-blue-700" title="Open website">${entry[key]}</a>`;
+        } else {
+          cell.textContent = entry[key];
+        }
+        row.appendChild(cell);
+      }
+      tableBody.appendChild(row);
+    }
+
+    exportBtn.addEventListener("click", function () {
+      if (data.length === 0) {
+        alert("No data to export! Add some entries first.");
+        return;
+      }
+      const ws = XLSX.utils.json_to_sheet(data);
+      const wb = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, "User  Data");
+      XLSX.writeFile(wb, "user_data.xlsx");
+    });
+
+    copyBtn.addEventListener("click", function () {
+      if (data.length === 0) {
+        alert("No data to copy! Add some entries first.");
+        return;
+      }
+      // Prepare tab-separated values with headers
+      const headers = ["Name", "Location", "Email", "Phone", "Instagram", "Website"];
+      const rows = data.map(entry =>
+        headers.map(h => entry[h] || "N/A").join("\t")
+      );
+      const tsv = headers.join("\t") + "\n" + rows.join("\n");
+
+      // Copy to clipboard
+      navigator.clipboard.writeText(tsv).then(() => {
+        alert("Table data copied to clipboard! You can now paste it into Excel or any spreadsheet.");
+      }, () => {
+        alert("Failed to copy data. Please try again.");
+      });
+    });
+
+    // Simple URL validation
+    function isValidURL(string) {
+      try {
+        new URL(string);
+        return true;
+      } catch (_) {
+        return false;
+      }
+    }
+  </script>
+<script>
+const fileUploadInput = document.getElementById('fileUploadInput');
+const fileUploadBtn = document.getElementById('fileUploadBtn');
+const uploadStatus = document.getElementById('uploadStatus');
+const uploadProgressBar = document.getElementById('uploadProgressBar');
+const uploadProgressFill = document.getElementById('uploadProgressFill');
+
+fileUploadInput.addEventListener('change', () => {
+  fileUploadBtn.disabled = !fileUploadInput.files.length;
+  uploadStatus.textContent = '';
+  uploadProgressBar.classList.add('hidden');
+  uploadProgressFill.style.width = '0%';
+});
+
+fileUploadBtn.addEventListener('click', () => {
+  if (!fileUploadInput.files.length) {
+    uploadStatus.textContent = 'Please select a file first.';
+    return;
+  }
+
+  const file = fileUploadInput.files[0];
+  const formData = new FormData();
+  formData.append('file', file);
+
+  fileUploadBtn.disabled = true;
+  uploadStatus.textContent = 'Uploading...';
+  uploadProgressBar.classList.remove('hidden');
+  uploadProgressFill.style.width = '0%';
+
+  const xhr = new XMLHttpRequest();
+  xhr.open('POST', '/upload'); // Change URL if your backend is on a different path or port
+
+  xhr.upload.onprogress = (event) => {
+    if (event.lengthComputable) {
+      const percent = (event.loaded / event.total) * 100;
+      uploadProgressFill.style.width = percent + '%';
+    }
+  };
+
+  xhr.onload = () => {
+    fileUploadBtn.disabled = false;
+    if (xhr.status >= 200 && xhr.status < 300) {
+      uploadStatus.textContent = 'Upload successful!';
+      uploadStatus.classList.remove('text-red-600');
+      uploadStatus.classList.add('text-green-600');
+      uploadProgressFill.style.width = '100%';
+      // Optionally clear the file input
+      fileUploadInput.value = '';
+      fileUploadBtn.disabled = true;
+    } else {
+      uploadStatus.textContent = `Upload failed: ${xhr.status} ${xhr.statusText}`;
+      uploadStatus.classList.remove('text-green-600');
+      uploadStatus.classList.add('text-red-600');
+      uploadProgressFill.style.width = '0%';
+    }
+  };
+
+  xhr.onerror = () => {
+    fileUploadBtn.disabled = false;
+    uploadStatus.textContent = 'Upload error. Please try again.';
+    uploadStatus.classList.remove('text-green-600');
+    uploadStatus.classList.add('text-red-600');
+    uploadProgressFill.style.width = '0%';
+  };
+
+  xhr.send(formData);
+});
+</script>
+</body>
+</html>
